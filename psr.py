@@ -1,46 +1,39 @@
-from random import randint
-items =["Paper","Rock","Scissors"]
+import time
 
-comp = items[randint(0,2)]
+print("Hello in Hangman game")
 
-player = False
+time.sleep(1)
 
-while player == False:
+print("Starting guessing...")
+time.sleep(0.5)
 
-    player = input("Paper,Rock,Scissors ? \nPlayer: ")
+word = "secret"
 
-    if player == comp:
-        print("Computer: ", comp)
-        print("Tie!!!")
-    elif player == "Paper":
-        if comp == "Rock":
-            print("Computer: ", comp)
-            print("You win!!!")
+guesses = ""
 
+turns = 10
+
+while turns > 0:
+    failed = 0
+    for char in word:
+        if char in guesses:
+            print(char)
         else:
-            print("Computer: ", comp)
-            print("You lose!!!")
+            print("-")
+            failed += 1
+    if failed == 0:
+        print("You won !!!")
+        break
 
-    elif player == "Scissors":
-        if comp == "Rock":
-            print("Computer: ", comp)
-            print("You lose!!!")
-            continue
+    guess  = input("Give a word: ")
+    guesses += guess
 
-        else:
-            print("Computer: ", comp)
-            print("You win!!!")
-    elif player == "Rock":
-        if comp == "Scissors":
-            print("Computer: ", comp)
-            print("You win!!!")
-            break
-        else:
-            print("Computer: ", comp)
-            print("You lose!!!")
-    continue
+    if guess not in word:
+        turns -= 1
+        print("Wrong")
+        print("You have " + str(turns) + " left")
+        if turns == 0:
+            print("You lose")
 
-player = False
-comp = items[randint(0,2)]
 
 
