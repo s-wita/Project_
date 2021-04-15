@@ -1,13 +1,6 @@
-import time
+email = input("Enter your Email: ").strip()
 
-def countdown(t):
-    while t:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer, end="\r")
-        time.sleep(1)
-        t -= 1
-    print('Time up')
+usernam = email[:email.index('@')]
+domain = email[email.index('@') + 1:]
 
-t = input("Enter the time in seconds: ")
-countdown(int(t))
+print(f"Your username is {usernam} and your domain is {domain}")
